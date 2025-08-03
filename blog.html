@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog - TechBlitz Deals</title>
+    <meta name="description" content="Read the latest tech reviews, buying guides, and industry insights. Stay updated with trends in AI, gadgets, software, and more.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+        /* Additional styles for blog page */
+        .blog-header {
+            background: var(--color-bg-secondary);
+            padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
+            text-align: center;
+        }
+        
+        .blog-filters {
+            background: var(--color-bg-tertiary);
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-filters-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .blog-filters-container {
+                grid-template-columns: 1fr auto auto;
+                align-items: center;
+            }
+        }
+        
+        .blog-search-container {
+            position: relative;
+            max-width: 300px;
+        }
+        
+        .blog-search-input {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-3xl);
+            background: var(--color-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-text-primary);
+            font-size: var(--font-size-base);
+        }
+        
+        .blog-search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .blog-sort-select {
+            padding: var(--spacing-md);
+            background: var(--color-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-text-primary);
+            cursor: pointer;
+        }
+        
+        .blog-sort-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        .blog-results-bar {
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-main {
+            padding: var(--spacing-2xl) 0;
+        }
+        
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+        }
+        
+        @media (min-width: 1024px) {
+            .blog-layout {
+                grid-template-columns: 1fr 300px;
+            }
+        }
+        
+        .blog-sidebar {
+            background: var(--color-surface);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-xl);
+            height: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .sidebar-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .blog-categories-list {
+            list-style: none;
+        }
+        
+        .blog-categories-list li {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .blog-categories-list a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+            display: block;
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius-md);
+        }
+        
+        .blog-categories-list a:hover,
+        .blog-categories-list a.active {
+            color: var(--color-primary);
+            background: rgba(0, 102, 255, 0.1);
+        }
+        
+        .featured-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        
+        .tag {
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-secondary);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-sm);
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+        
+        .tag:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .recent-posts {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .recent-post {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .recent-post-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--border-radius-md);
+            object-fit: cover;
+        }
+        
+        .recent-post-content h4 {
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .recent-post-content h4 a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+        
+        .recent-post-content h4 a:hover {
+            color: var(--color-primary);
+        }
+        
+        .recent-post-date {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+        
+        .newsletter-sidebar {
+            background: var(--gradient-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+        }
+        
+        .newsletter-sidebar h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .newsletter-sidebar p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-sm);
+        }
+        
+        .newsletter-sidebar input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: none;
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .newsletter-sidebar button {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: white;
+            color: var(--color-primary);
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .newsletter-sidebar button:hover {
+            background: var(--color-text-secondary);
+        }
+        
+        .no-posts-message {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--color-text-secondary);
+        }
+        
+        .no-posts-message i {
+            font-size: var(--font-size-4xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .blog-card__featured-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            background: var(--gradient-secondary);
+            color: var(--color-bg-primary);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .blog-card__author-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .blog-card__tag {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-secondary);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-xs);
+            margin-right: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="index.html" class="nav__logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechBlitz Deals</span>
+                </a>
+            </div>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="showcase.html" class="nav__link">Products</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="blog.html" class="nav__link active">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="about.html" class="nav__link">About</a>
+                    </li>
+                </ul>
+                
+                <div class="nav__close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Blog Header -->
+        <section class="blog-header">
+            <div class="container">
+                <h1 data-aos="fade-up">Tech <span class="text-gradient">Blog</span></h1>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Expert insights, detailed reviews, and buying guides to help you make smarter tech decisions.
+                </p>
+            </div>
+        </section>
+
+        <!-- Blog Filters -->
+        <section class="blog-filters">
+            <div class="container">
+                <div class="blog-filters-container">
+                    <!-- Category Filters -->
+                    <div class="filter-group">
+                        <span class="filter-label">Category:</span>
+                        <button class="filter-btn active" data-blog-filter-category="all">All Posts</button>
+                        <button class="filter-btn" data-blog-filter-category="reviews">Reviews</button>
+                        <button class="filter-btn" data-blog-filter-category="ai tools">AI Tools</button>
+                        <button class="filter-btn" data-blog-filter-category="hosting">Hosting</button>
+                        <button class="filter-btn" data-blog-filter-category="online courses">Courses</button>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="blog-search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="blog-search-input" id="blog-search" placeholder="Search articles...">
+                    </div>
+
+                    <!-- Sort -->
+                    <select class="blog-sort-select" id="blog-sort">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="alphabetical">A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Bar -->
+        <section class="blog-results-bar">
+            <div class="container">
+                <div class="blog-results-bar">
+                    <span class="results-count" id="blog-results-count">Loading posts...</span>
+                    <button class="clear-filters" onclick="resetBlogFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear Filters
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Main Content -->
+        <section class="blog-main">
+            <div class="container">
+                <div class="blog-layout">
+                    <!-- Blog Posts Grid -->
+                    <div class="blog-content">
+                        <div class="blog__grid" id="blog-showcase">
+                            <!-- Blog posts will be loaded dynamically -->
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>Loading blog posts...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="blog-sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Categories</h3>
+                            <div id="blog-categories">
+                                <!-- Categories will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Popular Tags -->
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Popular Tags</h3>
+                            <div class="featured-tags">
+                                <a href="#" class="tag">AI</a>
+                                <a href="#" class="tag">Reviews</a>
+                                <a href="#" class="tag">Apple</a>
+                                <a href="#" class="tag">Programming</a>
+                                <a href="#" class="tag">Cloud</a>
+                                <a href="#" class="tag">Productivity</a>
+                                <a href="#" class="tag">Software</a>
+                                <a href="#" class="tag">Hardware</a>
+                            </div>
+                        </div>
+
+                        <!-- Recent Posts -->
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Recent Posts</h3>
+                            <div class="recent-posts">
+                                <div class="recent-post">
+                                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=60&h=60&fit=crop" alt="AI Writing Tools" class="recent-post-image">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">AI Writing Tools Guide</a></h4>
+                                        <span class="recent-post-date">Jan 28, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="recent-post">
+                                    <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=60&h=60&fit=crop" alt="MacBook Pro" class="recent-post-image">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">MacBook Pro M3 Review</a></h4>
+                                        <span class="recent-post-date">Jan 25, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="recent-post">
+                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=60&h=60&fit=crop" alt="Cloud Hosting" class="recent-post-image">
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">Best Cloud Hosting</a></h4>
+                                        <span class="recent-post-date">Jan 22, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Newsletter Signup -->
+                        <div class="sidebar-section">
+                            <div class="newsletter-sidebar">
+                                <h3>Stay Updated</h3>
+                                <p>Get the latest tech news and reviews delivered to your inbox.</p>
+                                <form id="sidebar-newsletter">
+                                    <input type="email" placeholder="Your email address" required>
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <div class="footer__brand">
+                        <a href="index.html" class="footer__logo">
+                            <i class="fas fa-bolt"></i>
+                            <span>TechBlitz Deals</span>
+                        </a>
+                        <p class="footer__description">
+                            Your trusted source for the best tech deals, honest reviews, and expert recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="showcase.html">Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Categories</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" data-category="gadgets">Tech Gadgets</a></li>
+                        <li><a href="#" data-category="ai-tools">AI Tools</a></li>
+                        <li><a href="#" data-category="software">Software</a></li>
+                        <li><a href="#" data-category="hosting">Hosting</a></li>
+                        <li><a href="#" data-category="courses">Online Courses</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Follow Us</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 TechBlitz Deals. All rights reserved.</p>
+                    <p class="affiliate-disclaimer">
+                        <small>
+                            Disclosure: This website contains affiliate links. We may earn a commission 
+                            when you make a purchase through our links at no additional cost to you.
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main Application Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/posts.js"></script>
+</body>
+</html>

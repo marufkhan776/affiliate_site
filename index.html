@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlitz Deals - Best Tech Gadgets, AI Tools & Software Deals</title>
+    <meta name="description" content="Discover the best deals on tech gadgets, AI tools, software, hosting, and online courses. Expert reviews and affiliate recommendations.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="index.html" class="nav__logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechBlitz Deals</span>
+                </a>
+            </div>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link active">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="showcase.html" class="nav__link">Products</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="blog.html" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="about.html" class="nav__link">About</a>
+                    </li>
+                </ul>
+                
+                <div class="nav__close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero__container container">
+                <div class="hero__content" data-aos="fade-up">
+                    <h1 class="hero__title">
+                        Discover the <span class="text-gradient">Best Tech Deals</span> 
+                        Before Everyone Else
+                    </h1>
+                    <p class="hero__description">
+                        Expert-curated tech gadgets, AI tools, software, and online courses. 
+                        Get exclusive deals and honest reviews to make smarter buying decisions.
+                    </p>
+                    <div class="hero__buttons">
+                        <a href="showcase.html" class="btn btn--primary">
+                            <i class="fas fa-rocket"></i>
+                            Explore Deals
+                        </a>
+                        <a href="blog.html" class="btn btn--outline">
+                            <i class="fas fa-newspaper"></i>
+                            Read Reviews
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero__image" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero__tech-visual">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-laptop"></i>
+                            <span>Laptops</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Tools</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile</span>
+                        </div>
+                        <div class="floating-card card-4">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="featured" id="featured">
+            <div class="container">
+                <div class="section__header" data-aos="fade-up">
+                    <span class="section__subtitle">Handpicked for You</span>
+                    <h2 class="section__title">Featured <span class="text-gradient">Products</span></h2>
+                    <p class="section__description">
+                        Our top-rated tech products with exclusive deals and honest reviews
+                    </p>
+                </div>
+
+                <div class="featured__grid" id="featured-products">
+                    <!-- Featured products will be loaded dynamically from products.json -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading featured products...</span>
+                    </div>
+                </div>
+
+                <div class="featured__footer" data-aos="fade-up">
+                    <a href="showcase.html" class="btn btn--secondary">
+                        <i class="fas fa-th-large"></i>
+                        View All Products
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Preview Section -->
+        <section class="blog-preview" id="blog-preview">
+            <div class="container">
+                <div class="section__header" data-aos="fade-up">
+                    <span class="section__subtitle">Latest Insights</span>
+                    <h2 class="section__title">From the <span class="text-gradient">Blog</span></h2>
+                    <p class="section__description">
+                        Stay updated with the latest tech trends, reviews, and buying guides
+                    </p>
+                </div>
+
+                <div class="blog__grid" id="blog-posts">
+                    <!-- Blog posts will be loaded dynamically from posts.json -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading latest posts...</span>
+                    </div>
+                </div>
+
+                <div class="blog__footer" data-aos="fade-up">
+                    <a href="blog.html" class="btn btn--outline">
+                        <i class="fas fa-blog"></i>
+                        Read More Articles
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter" id="newsletter">
+            <div class="container">
+                <div class="newsletter__content" data-aos="zoom-in">
+                    <div class="newsletter__text">
+                        <h3 class="newsletter__title">Never Miss a Deal</h3>
+                        <p class="newsletter__description">
+                            Get exclusive tech deals and early access to our reviews delivered to your inbox
+                        </p>
+                    </div>
+                    <form class="newsletter__form" id="newsletter-form">
+                        <div class="newsletter__input-group">
+                            <input type="email" placeholder="Enter your email" class="newsletter__input" required>
+                            <button type="submit" class="newsletter__btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <div class="footer__brand">
+                        <a href="index.html" class="footer__logo">
+                            <i class="fas fa-bolt"></i>
+                            <span>TechBlitz Deals</span>
+                        </a>
+                        <p class="footer__description">
+                            Your trusted source for the best tech deals, honest reviews, and expert recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="showcase.html">Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Categories</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" data-category="gadgets">Tech Gadgets</a></li>
+                        <li><a href="#" data-category="ai-tools">AI Tools</a></li>
+                        <li><a href="#" data-category="software">Software</a></li>
+                        <li><a href="#" data-category="hosting">Hosting</a></li>
+                        <li><a href="#" data-category="courses">Online Courses</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Follow Us</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 TechBlitz Deals. All rights reserved.</p>
+                    <p class="affiliate-disclaimer">
+                        <small>
+                            Disclosure: This website contains affiliate links. We may earn a commission 
+                            when you make a purchase through our links at no additional cost to you.
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main Application Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/posts.js"></script>
+</body>
+</html>
