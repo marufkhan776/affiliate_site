@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TechBlitz Deals</title>
+    <meta name="description" content="Learn about TechBlitz Deals, our mission to provide honest tech reviews and the best deals. Read our affiliate disclosure and meet our team.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+        /* Additional styles for about page */
+        .about-hero {
+            background: var(--color-bg-secondary);
+            padding: calc(var(--header-height) + var(--spacing-3xl)) 0 var(--spacing-3xl);
+            text-align: center;
+        }
+        
+        .about-content {
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-3xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+        
+        .about-text h2 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-text-primary);
+        }
+        
+        .about-text p {
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .stats-section {
+            background: var(--color-bg-secondary);
+            padding: var(--spacing-3xl) 0;
+            margin: var(--spacing-3xl) 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background: var(--color-surface);
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .mission-section {
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-content h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .mission-content p {
+            font-size: var(--font-size-lg);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .values-section {
+            background: var(--color-bg-secondary);
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .value-card {
+            background: var(--color-surface);
+            padding: var(--spacing-2xl);
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-lg);
+            color: white;
+            font-size: var(--font-size-2xl);
+        }
+        
+        .value-card h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-primary);
+        }
+        
+        .value-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        
+        .team-section {
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .team-card {
+            background: var(--color-surface);
+            padding: var(--spacing-2xl);
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform var(--transition-normal);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto var(--spacing-lg);
+            object-fit: cover;
+        }
+        
+        .team-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-primary);
+        }
+        
+        .team-role {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 500;
+        }
+        
+        .team-bio {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            font-size: var(--font-size-sm);
+        }
+        
+        .disclaimer-section {
+            background: var(--color-bg-tertiary);
+            padding: var(--spacing-3xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .disclaimer-content h2 {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .disclaimer-box {
+            background: var(--color-surface);
+            padding: var(--spacing-2xl);
+            border-radius: var(--border-radius-xl);
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .disclaimer-box h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .disclaimer-box p,
+        .disclaimer-box ul {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .disclaimer-box ul {
+            padding-left: var(--spacing-xl);
+        }
+        
+        .disclaimer-box li {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contact-section {
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+        
+        .contact-method:hover {
+            color: var(--color-primary);
+        }
+        
+        .contact-method i {
+            font-size: var(--font-size-lg);
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="index.html" class="nav__logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechBlitz Deals</span>
+                </a>
+            </div>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="showcase.html" class="nav__link">Products</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="blog.html" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="about.html" class="nav__link active">About</a>
+                    </li>
+                </ul>
+                
+                <div class="nav__close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="container">
+                <h1 data-aos="fade-up">About <span class="text-gradient">TechBlitz Deals</span></h1>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Your trusted source for honest tech reviews, expert recommendations, and the best deals in technology.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text" data-aos="fade-right">
+                        <h2>Who We Are</h2>
+                        <p>
+                            TechBlitz Deals was founded with a simple mission: to help people make smarter technology decisions. 
+                            In a world overwhelmed with tech products and endless options, we cut through the noise to bring you 
+                            honest reviews, expert insights, and the best deals available.
+                        </p>
+                        <p>
+                            Our team consists of technology enthusiasts, professional reviewers, and industry experts who have 
+                            decades of combined experience in evaluating tech products. We don't just read spec sheets – we 
+                            actually use and test every product we recommend.
+                        </p>
+                        <p>
+                            Whether you're looking for the latest AI tools, powerful software, cutting-edge gadgets, reliable 
+                            hosting solutions, or educational courses to advance your career, we've got you covered with 
+                            detailed reviews and exclusive deals.
+                        </p>
+                    </div>
+                    <div class="about-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=400&fit=crop" alt="Team collaboration">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Products Reviewed</div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Monthly Readers</div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Newsletter Subscribers</div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="container">
+                <div class="mission-content" data-aos="fade-up">
+                    <h2>Our Mission</h2>
+                    <p>
+                        To democratize access to technology by providing honest, comprehensive reviews and securing 
+                        the best possible deals for our community. We believe that everyone deserves to make informed 
+                        decisions about technology purchases without breaking the bank.
+                    </p>
+                    <p>
+                        We're committed to transparency, integrity, and putting our readers' interests first. Every 
+                        recommendation we make is based on thorough testing, research, and genuine belief in the 
+                        product's value.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <div class="container">
+                <h2 class="section__title" data-aos="fade-up">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Honesty & Transparency</h3>
+                        <p>
+                            We provide unbiased reviews and clearly disclose our affiliate relationships. 
+                            Our opinions are never influenced by potential commissions.
+                        </p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Thorough Research</h3>
+                        <p>
+                            Every product we review undergoes extensive testing and research. We dig deep 
+                            to uncover both strengths and weaknesses.
+                        </p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community First</h3>
+                        <p>
+                            Our readers come first. We focus on providing value to our community rather 
+                            than maximizing short-term profits.
+                        </p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Innovation Focus</h3>
+                        <p>
+                            We stay on the cutting edge of technology trends to bring you the latest 
+                            and most innovative products first.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section__title" data-aos="fade-up">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Alex Chen" class="team-avatar">
+                        <div class="team-name">Alex Chen</div>
+                        <div class="team-role">Founder & Editor-in-Chief</div>
+                        <div class="team-bio">
+                            Former software engineer turned tech journalist with 8+ years of experience. 
+                            Specializes in AI tools, software reviews, and emerging technologies.
+                        </div>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face" alt="Sarah Johnson" class="team-avatar">
+                        <div class="team-name">Sarah Johnson</div>
+                        <div class="team-role">Senior Product Reviewer</div>
+                        <div class="team-bio">
+                            Hardware specialist and Apple enthusiast with 10+ years in tech journalism. 
+                            Expert in consumer electronics and mobile technology.
+                        </div>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Michael Rodriguez" class="team-avatar">
+                        <div class="team-name">Michael Rodriguez</div>
+                        <div class="team-role">Cloud & DevOps Specialist</div>
+                        <div class="team-bio">
+                            DevOps engineer and cloud architecture expert. Focuses on hosting solutions, 
+                            development tools, and enterprise software.
+                        </div>
+                    </div>
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Emily Carter" class="team-avatar">
+                        <div class="team-name">Emily Carter</div>
+                        <div class="team-role">Education & Career Coach</div>
+                        <div class="team-bio">
+                            Former software engineer turned career coach. Specializes in online courses, 
+                            bootcamps, and professional development resources.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Affiliate Disclaimer -->
+        <section class="disclaimer-section">
+            <div class="container">
+                <div class="disclaimer-content">
+                    <h2 data-aos="fade-up">Affiliate Disclosure & Editorial Policy</h2>
+                    
+                    <div class="disclaimer-box" data-aos="fade-up" data-aos-delay="100">
+                        <h3>
+                            <i class="fas fa-info-circle"></i>
+                            Affiliate Relationship Disclosure
+                        </h3>
+                        <p>
+                            <strong>TechBlitz Deals participates in various affiliate marketing programs.</strong> This means that 
+                            when you click on certain links on our website and make a purchase, we may receive a small 
+                            commission at no additional cost to you. These affiliate relationships help support our 
+                            website and allow us to continue providing free, high-quality content.
+                        </p>
+                        <p>We are affiliates of the following companies (but not limited to):</p>
+                        <ul>
+                            <li>Amazon Associates Program</li>
+                            <li>Apple Affiliate Program</li>
+                            <li>Adobe Affiliate Program</li>
+                            <li>Microsoft Partner Program</li>
+                            <li>Various SaaS and software companies</li>
+                            <li>Online course platforms (Udemy, Coursera, etc.)</li>
+                            <li>Cloud hosting providers</li>
+                        </ul>
+                    </div>
+
+                    <div class="disclaimer-box" data-aos="fade-up" data-aos-delay="200">
+                        <h3>
+                            <i class="fas fa-heart"></i>
+                            Our Editorial Promise
+                        </h3>
+                        <p>
+                            <strong>Our reviews and recommendations are never influenced by affiliate commissions.</strong> 
+                            We maintain strict editorial independence and only recommend products that our team has 
+                            thoroughly tested and genuinely believes will provide value to our readers.
+                        </p>
+                        <p>Key principles of our editorial policy:</p>
+                        <ul>
+                            <li>All reviews are based on hands-on testing and research</li>
+                            <li>We clearly mark affiliate links and sponsored content</li>
+                            <li>Negative reviews are published when products don't meet our standards</li>
+                            <li>We decline partnerships with companies whose products we cannot recommend</li>
+                            <li>Reader interests always come before potential earnings</li>
+                        </ul>
+                    </div>
+
+                    <div class="disclaimer-box" data-aos="fade-up" data-aos-delay="300">
+                        <h3>
+                            <i class="fas fa-gavel"></i>
+                            Legal Disclaimers
+                        </h3>
+                        <p>
+                            <strong>No Warranty:</strong> While we strive for accuracy, the information on this website 
+                            is provided "as is" without warranty of any kind. Technology products and pricing change 
+                            frequently, and we cannot guarantee the accuracy of all information at all times.
+                        </p>
+                        <p>
+                            <strong>Professional Advice:</strong> Our content is for informational purposes only and 
+                            should not be considered professional advice. Always consult with qualified professionals 
+                            for specific technical or business decisions.
+                        </p>
+                        <p>
+                            <strong>External Links:</strong> We are not responsible for the content, privacy policies, 
+                            or practices of external websites linked from our site.
+                        </p>
+                    </div>
+
+                    <div class="disclaimer-box" data-aos="fade-up" data-aos-delay="400">
+                        <h3>
+                            <i class="fas fa-handshake"></i>
+                            How We Make Money
+                        </h3>
+                        <p>
+                            Transparency is important to us. Here's how TechBlitz Deals generates revenue:
+                        </p>
+                        <ul>
+                            <li><strong>Affiliate Commissions:</strong> Small commissions from product sales through our links</li>
+                            <li><strong>Display Advertising:</strong> Banner ads and sponsored placements</li>
+                            <li><strong>Sponsored Content:</strong> Clearly marked paid partnerships (rare and selective)</li>
+                            <li><strong>Email Newsletter:</strong> Occasional promotional content to subscribers</li>
+                        </ul>
+                        <p>
+                            <strong>100% of our revenue goes toward:</strong> Maintaining the website, purchasing products 
+                            for testing, paying our team of reviewers, and improving our content quality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content" data-aos="fade-up">
+                    <h2>Get In Touch</h2>
+                    <p>
+                        Have questions, suggestions, or want to collaborate? We'd love to hear from you! 
+                        Reach out through any of the channels below.
+                    </p>
+                    <div class="contact-methods">
+                        <a href="mailto:hello@techblitzdeals.com" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@techblitzdeals.com</span>
+                        </a>
+                        <a href="#" class="contact-method">
+                            <i class="fab fa-twitter"></i>
+                            <span>@TechBlitzDeals</span>
+                        </a>
+                        <a href="#" class="contact-method">
+                            <i class="fab fa-linkedin"></i>
+                            <span>TechBlitz Deals</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <div class="footer__brand">
+                        <a href="index.html" class="footer__logo">
+                            <i class="fas fa-bolt"></i>
+                            <span>TechBlitz Deals</span>
+                        </a>
+                        <p class="footer__description">
+                            Your trusted source for the best tech deals, honest reviews, and expert recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="showcase.html">Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Categories</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" data-category="gadgets">Tech Gadgets</a></li>
+                        <li><a href="#" data-category="ai-tools">AI Tools</a></li>
+                        <li><a href="#" data-category="software">Software</a></li>
+                        <li><a href="#" data-category="hosting">Hosting</a></li>
+                        <li><a href="#" data-category="courses">Online Courses</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Follow Us</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 TechBlitz Deals. All rights reserved.</p>
+                    <p class="affiliate-disclaimer">
+                        <small>
+                            Disclosure: This website contains affiliate links. We may earn a commission 
+                            when you make a purchase through our links at no additional cost to you.
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main Application Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/posts.js"></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Showcase - TechBlitz Deals</title>
+    <meta name="description" content="Browse our complete collection of tech products, AI tools, software, hosting services, and online courses. Find the best deals with expert reviews.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+        /* Additional styles for showcase page */
+        .showcase-header {
+            background: var(--color-bg-secondary);
+            padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
+            text-align: center;
+        }
+        
+        .showcase-filters {
+            background: var(--color-bg-tertiary);
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .filters-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .filters-container {
+                grid-template-columns: 1fr auto auto;
+                align-items: center;
+            }
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-right: var(--spacing-md);
+        }
+        
+        .filter-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 300px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-3xl);
+            background: var(--color-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-text-primary);
+            font-size: var(--font-size-base);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+        }
+        
+        .sort-select {
+            padding: var(--spacing-md);
+            background: var(--color-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            color: var(--color-text-primary);
+            cursor: pointer;
+        }
+        
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        .results-bar {
+            padding: var(--spacing-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .results-count {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .clear-filters {
+            background: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-normal);
+        }
+        
+        .clear-filters:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .showcase-grid {
+            padding: var(--spacing-2xl) 0;
+        }
+        
+        .no-products-message,
+        .error-message {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--color-text-secondary);
+        }
+        
+        .no-products-message i,
+        .error-message i {
+            font-size: var(--font-size-4xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .product-card__discount {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--color-error);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="index.html" class="nav__logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechBlitz Deals</span>
+                </a>
+            </div>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="showcase.html" class="nav__link active">Products</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="blog.html" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="about.html" class="nav__link">About</a>
+                    </li>
+                </ul>
+                
+                <div class="nav__close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Showcase Header -->
+        <section class="showcase-header">
+            <div class="container">
+                <h1 data-aos="fade-up">Product <span class="text-gradient">Showcase</span></h1>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Discover the best tech deals curated by our experts. From cutting-edge gadgets to powerful software tools.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="showcase-filters">
+            <div class="container">
+                <div class="filters-container">
+                    <!-- Category Filters -->
+                    <div class="filter-group">
+                        <span class="filter-label">Category:</span>
+                        <button class="filter-btn active" data-filter-category="all">All</button>
+                        <button class="filter-btn" data-filter-category="tech gadgets">Gadgets</button>
+                        <button class="filter-btn" data-filter-category="ai tools">AI Tools</button>
+                        <button class="filter-btn" data-filter-category="software">Software</button>
+                        <button class="filter-btn" data-filter-category="hosting">Hosting</button>
+                        <button class="filter-btn" data-filter-category="online courses">Courses</button>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="product-search" placeholder="Search products...">
+                    </div>
+
+                    <!-- Sort -->
+                    <select class="sort-select" id="product-sort">
+                        <option value="featured">Sort by Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Bar -->
+        <section class="results-bar">
+            <div class="container">
+                <div class="results-bar">
+                    <span class="results-count" id="results-count">Loading products...</span>
+                    <button class="clear-filters" onclick="resetFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear Filters
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="showcase-grid">
+            <div class="container">
+                <div class="featured__grid" id="products-showcase">
+                    <!-- Products will be loaded dynamically -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading products...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <div class="footer__brand">
+                        <a href="index.html" class="footer__logo">
+                            <i class="fas fa-bolt"></i>
+                            <span>TechBlitz Deals</span>
+                        </a>
+                        <p class="footer__description">
+                            Your trusted source for the best tech deals, honest reviews, and expert recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="showcase.html">Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Categories</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" data-category="gadgets">Tech Gadgets</a></li>
+                        <li><a href="#" data-category="ai-tools">AI Tools</a></li>
+                        <li><a href="#" data-category="software">Software</a></li>
+                        <li><a href="#" data-category="hosting">Hosting</a></li>
+                        <li><a href="#" data-category="courses">Online Courses</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__section">
+                    <h4 class="footer__title">Follow Us</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 TechBlitz Deals. All rights reserved.</p>
+                    <p class="affiliate-disclaimer">
+                        <small>
+                            Disclosure: This website contains affiliate links. We may earn a commission 
+                            when you make a purchase through our links at no additional cost to you.
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main Application Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/posts.js"></script>
+</body>
+</html>
